@@ -12,7 +12,7 @@ Manual Installation
 
 1. Check out the source from github:
 
-	git clone https://github.com/nicholasc/vim-config.git ~/.vim
+	<code>git clone https://github.com/nicholasc/vim-config.git ~/.vim</code>
 
 2. Clone vundle repository inside the bundle folder:
 
