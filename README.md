@@ -16,17 +16,17 @@ Manual Installation
 
 2. Clone vundle repository inside the bundle folder:
 
-	git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
+	<code>git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim</code>
 
 3. Open vim and install the plugins using the following command:
 	
-	:PluginInstall
+	<code>:PluginInstall</code>
 
 4. Once all the plugins are installed. You will need to compile an extension for Command-T. To do so open a terminal window and enter the following series of commands:
 
-	cd ~/.vim/bundle/Command-T/ruby/command-t
+	<code>cd ~/.vim/bundle/Command-T/ruby/command-t
 	ruby extconf.rb
-	make
+	make</code>
 
 You should be good to go now. 
 
