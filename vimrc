@@ -11,7 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Configure plugins
 Plugin 'wincent/Command-T'
-Plugin 'vim-scripts/Conque-Shell'
+"Plugin 'vim-scripts/Conque-Shell'
 Plugin 'yegappan/grep'
 Plugin 'Shougo/neocomplcache.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -21,6 +21,7 @@ Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'ervandew/supertab'
 Plugin 'nicholasc/vim-black'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-sensible'
 
@@ -41,7 +42,7 @@ set colorcolumn=120
 colorscheme black
 
 " Map F13 to edit this file
-map <F13> :e ~/.vimrc<CR>
+map <F13> :e ~/.vim/vimrc<CR>
 
 " Map F14 to edit the GUI file
 map <F14> :e ~/.gvimrc<CR>
@@ -72,8 +73,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 set completeopt=longest,menuone
 
 " Let SuperTab complete with Omni
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Generate ctags for the current directory
 map <M-S-t> :!ctags --langmap=php:.engine.inc.module.theme.install.php --php-kinds=cdfi --languages=php --recurse --exclude='.svn'<cr>
