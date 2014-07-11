@@ -30,6 +30,7 @@ Plugin 'Shougo/vimshell.vim'
 call vundle#end()
 filetype plugin indent on
 
+
 " Basic sets
 set cul
 set number
@@ -85,5 +86,3 @@ set tags=./tags
 
 " Enable neocomplcache at startup
 let g:neocomplcache_enable_at_startup = 1
-
-
