@@ -10,8 +10,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Configure plugins
-Plugin 'wincent/Command-T'
-"Plugin 'vim-scripts/Conque-Shell'
+Plugin 'kien/ctrlp.vim'
 Plugin 'yegappan/grep'
 Plugin 'Shougo/neocomplcache.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -19,6 +18,8 @@ Plugin 'PDV--phpDocumentor-for-Vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
 Plugin 'nicholasc/vim-black'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-fugitive'
@@ -29,7 +30,6 @@ Plugin 'Shougo/vimshell.vim'
 
 call vundle#end()
 filetype plugin indent on
-
 
 " Basic sets
 set cul
@@ -55,7 +55,7 @@ map <D-d> :!/usr/bin/.php -l %<CR>
 "map <D-i> :!phpcs %<CR>
 
 " Create a terminal buffer
-map <D-B> :ConqueTerm bash<CR>
+map <D-B> :VimShell<CR>
 
 " PHP DocBlock Generator
 inoremap <M-S-d> <ESC>:call PhpDocSingle()<CR>i 
@@ -86,3 +86,9 @@ set tags=./tags
 
 " Enable neocomplcache at startup
 let g:neocomplcache_enable_at_startup = 1
+
+" CtrlP opens files in a new tab
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("e")': [],
+  \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
+  \ }
