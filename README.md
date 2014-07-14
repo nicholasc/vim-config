@@ -1,11 +1,34 @@
-Information
+Introduction
 ===========
-This is a simple, yet powerfull configuration for development. I use this every day at work and it works great for me. I'm always open to suggestions/contributions or comments. Thanks & enjoy!
+I find this configuration to be very simple yet powerfull. I'm trying to get something as close as possible to a regular IDE while keeping everything lightweight and easy to use. This is the configuration that I use every day at work and it works great for me. I'm always open to suggestions/contributions. THanks for stopping by and I hopefully you'll enjoy my config.
 
-Dependencies
+Requirements
 ============
+There are some dependencies in order to get this configuration working properly and smoothly. Here is a list of all thirdparty libraries you will need on your computer before you can install.
 
-TODO: List all dependencies for the configuration to work correctly.
+* [CMake](http://www.cmake.org/cmake/resources/software.html) Click on this link to install CMake manually of follow the instructions bellow if you're a package manager person.
+
+	Mac OS X: 
+		I recommend installing CMake with Homebrew(http://brew.sh/) using the following command:
+
+			<code>brew install cmake</code>
+
+	Linux:
+		If you are using as debian distribution, use the following command:
+			
+			<code>sudo apt-get install cmake</code>
+
+		For redhat dstributions:
+			
+			<code>sudo yum install cmake</code>
+
+	Windows:
+		TODO
+
+* [Ruby]()
+
+* [ctags]()
+
 
 Manual Installation
 ===================
@@ -22,13 +45,12 @@ Manual Installation
 	
 	<code>:PluginInstall</code>
 
-4. Once all the plugins are installed. You will need to compile an extension for Command-T. To do so open a terminal window and enter the following series of commands:
+4. The last step here is to compile the vimproc extension for Vim:
 
-	<code>cd ~/.vim/bundle/Command-T/ruby/command-t
-	ruby extconf.rb
-	make</code>
+    <code>cd ~/.vim/bunder/vimproc</code>
+    <code>make</code>
 
-You should be good to go now. 
+You should be good to go now. Make sure you read the usage section to make sure you're using the full potential of this config.
 
 Plugins
 =======
@@ -38,11 +60,6 @@ TODO: Update the list of plugins to the ones in the vimrc config file.
 All the plugins here are clones of their original repository. Vundle is being used as a plugin manager. To update these plugins simply use :PluginUpdate. To list them, use :PluginList.
 
 Here is a list of all the available plugin with this config:
-
-* [CommandT](https://github.com/wincent/Command-T): The Command-T plug-in provides an extremely fast, intuitive mechanism for
-opening files and buffers with a minimal number of keystrokes.
-
-* [Conque-Shell](https://github.com/vim-scripts/Conque-Shell): Conque is a Vim plugin which allows you to run interactive programs, such as bash on linux or powershell.exe on Windows, inside a Vim buffer.
 
 * [grep](https://github.com/yegappan/grep): Plugin to integrate Grep search tools with Vim.
 
