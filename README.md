@@ -1,33 +1,30 @@
 Introduction
 ===========
-I find this configuration to be very simple yet powerfull. I'm trying to get something as close as possible to a regular IDE while keeping everything lightweight and easy to use. This is the configuration that I use every day at work and it works great for me. I'm always open to suggestions/contributions. THanks for stopping by and I hopefully you'll enjoy my config.
+I find this configuration to be very simple yet powerful. I'm trying to get something as close as possible to a regular IDE while keeping everything lightweight and easy to use. This is the configuration that I use every day at work and it works great for me. I'm always open to suggestions/contributions. Thanks for stopping by and I hopefully you'll enjoy my config.
 
 Requirements
 ============
 There are some dependencies in order to get this configuration working properly and smoothly. Here is a list of all thirdparty libraries you will need on your computer before you can install.
 
-* [CMake](http://www.cmake.org/cmake/resources/software.html) Click on this link to install CMake manually of follow the instructions bellow if you're a package manager person.
+* [CMake](http://www.cmake.org/cmake/resources/software.html): Click on this link to install CMake manually of follow the instructions bellow if you're a package manager person.
 
 	Mac OS X: 
 		I recommend installing CMake with Homebrew(http://brew.sh/) using the following command:
 
-			<code>brew install cmake</code>
+			brew install cmake
 
 	Linux:
 		If you are using as debian distribution, use the following command:
 			
-			<code>sudo apt-get install cmake</code>
+			sudo apt-get install cmake
 
 		For redhat dstributions:
 			
-			<code>sudo yum install cmake</code>
-
-	Windows:
-		TODO
+			sudo yum install cmake
 
 * [Ruby]()
 
-* [ctags]()
+* [ctags](https://github.com/shawncplus/phpcomplete.vim/wiki/Patched-ctags): Follow the instructions on the Patched-ctags repository to compile it from source and get better completion for PHP.
 
 
 Manual Installation
