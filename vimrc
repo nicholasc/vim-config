@@ -38,7 +38,7 @@ set cul
 set number
 set tabstop=4
 set shiftwidth=4
-set synmaxcol=320
+set synmaxcol=512
 set guioptions-=r
 set guifont=Monaco:h10
 set colorcolumn=120
@@ -89,9 +89,6 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " CtrlP configuration
-"let g:ctrlp_use_caching = 1
-"let g:ctrlp_clear_cache_on_exit = 0
-"let g:ctrlp_cache_dir = $HOME . '.vim/.ctrlp'
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': [],
@@ -107,10 +104,8 @@ map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 36 
 
 " Configure Tagbar plugin
-map <leader>tb :TagbarOpen<CR>
+map <leader>tb :TagbarOpen fc<CR>
 let g:tagbar_width = 36
-autocmd VimEnter * nested :TagbarOpen
-autocmd TabEnter * nested :TagbarOpen
 
 " Generate ctags for the current directory
 map <D-C> :!ctags -R --languages=php --exclude='.*'<cr>
