@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 " Configure plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'yegappan/grep'
-Plugin 'Shougo/neocomplcache.vim'
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'PDV--phpDocumentor-for-Vim'
