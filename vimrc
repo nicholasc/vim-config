@@ -16,6 +16,7 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tobyS/pdv'
+Plugin 'tobyS/vmustache'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'ervandew/supertab'
@@ -59,9 +60,8 @@ map <D-B> :VimShell<CR>
 map <leader>t ::CtrlPCurWD<CR>
 
 " PHP DocBlock Generator
-inoremap <D-D> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <D-D> :call PhpDocSingle()<CR> 
-vnoremap <D-D> :call PhpDocRange()<CR>
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates"
+map <D-D> :call pdv#DocumentCurrentLine()<CR>
 
 " Remap window splits switches
 map <D-]> <C-w><Right>
@@ -75,11 +75,9 @@ set completeopt=longest,menuone
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Enable neocomplcache at startup
-let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#min_keyword_length = 3
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
