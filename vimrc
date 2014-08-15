@@ -30,6 +30,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-sensible'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'kien/rainbow_parentheses.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -43,29 +45,27 @@ set synmaxcol=512
 set guioptions-=r
 set guifont=Monaco:h10
 set colorcolumn=120
+set transparency=12
 
 " Default theme
 colorscheme black
 
 " Map F13 to edit this file
-map <F13> :e ~/.vim/vimrc<CR>
+map <F13> :e ~/.vim/vimrc<cr>
 
 " Map F14 to edit the GUI file
-map <F14> :e ~/.gvimrc<CR>
+map <F14> :e ~/.gvimrc<cr>
 
 " Create a terminal buffer
-map <D-B> :VimShell<CR>
+map <D-B> :VimShell<cr>
+let g:vimshell_editor_command = "mvim"
 
 " Hard to fight old habbits...
-map <leader>t ::CtrlPCurWD<CR>
+map <leader>t :CtrlPCurWD<cr>
 
 " PHP DocBlock Generator
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates"
-map <D-D> :call pdv#DocumentCurrentLine()<CR>
-
-" Remap window splits switches
-map <D-]> <C-w><Right>
-map <D-[> <C-w><Left>
+map <D-D> :call pdv#DocumentCurrentLine()<cr>
 
 " EasyMotion use one leader
 let g:EasyMotion_leader_key = '<Leader>' 
@@ -98,11 +98,14 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " Map nerdtree opening
-map <leader>n :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<cr>
 let g:NERDTreeWinSize = 36 
 
+" Map nerdcommenter toggle
+map <leader>c :NERDComToggleComment<cr>
+
 " Configure Tagbar plugin
-map <leader>tb :TagbarOpen fc<CR>
+map <leader>tb :TagbarOpen fc<cr>
 let g:tagbar_width = 36
 
 " Generate ctags for the current directory
