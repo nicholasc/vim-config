@@ -32,6 +32,7 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 filetype plugin indent on
