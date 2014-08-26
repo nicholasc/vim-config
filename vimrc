@@ -31,8 +31,10 @@ Plugin 'tpope/vim-sensible'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'groenewege/vim-less'
-Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'elzr/vim-json'
+Plugin 'tpope/vim-surround'
+Plugin 'apachelogs.vim'
+Plugin 'othree/html5.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -45,8 +47,7 @@ set shiftwidth=4
 set synmaxcol=512
 set guioptions-=r
 set guifont=Monaco:h10
-set colorcolumn=120
-set transparency=12
+
 
 " Default theme
 colorscheme black
@@ -98,6 +99,15 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
   \ }
 
+" Fugitive mapping
+map <leader>gw :Gwrite<cr>
+map <leader>gs :Gstatus<cr>
+map <leadeR>gc :Gcommit<cr>
+map <leader>gd :Gdiff<cr>
+map <leader>gp :Gpull<cr>
+map <leader>gg :Gpush<cr>
+map <leader>gm :Git mergetool<cr>
+
 " Map nerdtree opening
 map <leader>n :NERDTreeToggle<cr>
 let g:NERDTreeWinSize = 36 
@@ -114,3 +124,10 @@ map <D-C> :!ctags -R --languages=php --exclude='.*'<cr>
 
 " Set the expected tags file
 set tags=./tags
+
+" Simple binding so we select a folder in web site directory
+function! ChangeCWD()
+	let folder = input("Folder name: ")
+	execute ":cd ~/Sites/" . folder
+endfunction
+autocmd VimEnter * call ChangeCWD()
