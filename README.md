@@ -10,18 +10,30 @@ There are some dependencies in order to get this configuration working properly 
 
 * [CMake](http://www.cmake.org/cmake/resources/software.html): Make is a family of tools designed to build, test and package software. CMake is used to control the software compilation process using simple platform and compiler independent configuration files.
 
-		I recommend installing CMake with Homebrew(http://brew.sh/) using the following command:
+	I recommend installing CMake with Homebrew(http://brew.sh/) using the following command:
 
-			brew install cmake
+		brew install cmake
 
 * [Ruby](https://www.ruby-lang.org/en/): A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
 
-		I recommend install Ruby with Homebrew(http://brew.sh/) using the following command:
+	I recommend install Ruby with Homebrew(http://brew.sh/) using the following command:
 
-			brew install ruby
+		brew install ruby
 
-* [ctags](https://github.com/shawncplus/phpcomplete.vim/wiki/Patched-ctags): Follow the instructions on the Patched-ctags repository to compile it from source and get better completion for PHP.
+* [Python](https://www.python.org/): Python is a programming language that lets you work quickly and integrate systems more effectively.
 
+	I recommend install Ruby with Homebrew(http://brew.sh/) using the following command:
+
+		brew install python
+
+* [ctags](https://github.com/shawncplus/phpcomplete.vim/wiki/Patched-ctags): Follow the instructions on the Patched-ctags repository to compile it from source and get better completion for PHP or use the following commands to install via brew:
+
+		curl https://gist.githubusercontent.com/complex857/9570127/raw/dec0f388be51d9ab6888db6d0ee3e82dfc37837c/ctags-better-php.rb > /usr/local/Library/Formula/ctags-better-php.rb
+		brew install ctags-better-php
+
+* [MacVim](https://code.google.com/p/macvim/): MacVim must be compiled with python & lua support. Using brew, MacVim comes with python by default. We must precise to brew to build the formula with lua support like so:
+
+		brew install macvim --with-lua
 
 Manual Installation
 ===================
@@ -30,15 +42,20 @@ Manual Installation
 
 		git clone https://github.com/nicholasc/vim-config.git ~/.vim
 
-2. Clone vundle repository inside the bundle folder:
+2. Create symlinks for vimrc & gvim:
+
+		ln -s ~/.vim/vimrc ~/.vimrc
+		ln -s ~/.vim/gvimrc ~/.gvimrc
+
+3. Clone vundle repository inside the bundle folder:
 
 		git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
 
-3. Open vim and install the plugins using the following command:
+4. Open vim and install the plugins using the following command:
 	
 		:PluginInstall
 
-4. The last step here is to compile the vimproc extension for Vim:
+5. The last step here is to compile the vimproc extension for Vim:
 
 		cd ~/.vim/bunder/vimproc
 		make
