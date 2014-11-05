@@ -10,6 +10,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Configure plugins
+Plugin 'itchyny/landscape.vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'kien/ctrlp.vim'
 Plugin 'yegappan/grep'
 Plugin 'Shougo/neocomplete.vim'
@@ -46,8 +48,7 @@ set tabstop=4
 set shiftwidth=4
 set synmaxcol=512
 set guioptions-=r
-set guifont=Monaco:h10
-
+set guifont=Monaco:h12
 
 " Default theme
 colorscheme black
@@ -124,10 +125,3 @@ map <D-C> :!ctags -R --languages=php --exclude='.*'<cr>
 
 " Set the expected tags file
 set tags=./tags
-
-" Simple binding so we select a folder in web site directory
-function! ChangeCWD()
-	let folder = input("Folder name: ")
-	execute ":cd ~/Sites/" . folder
-endfunction
-autocmd VimEnter * call ChangeCWD()
