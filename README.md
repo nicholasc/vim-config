@@ -31,7 +31,7 @@ There are some dependencies in order to get this configuration working properly 
 		curl https://gist.githubusercontent.com/complex857/9570127/raw/dec0f388be51d9ab6888db6d0ee3e82dfc37837c/ctags-better-php.rb > /usr/local/Library/Formula/ctags-better-php.rb
 		brew install ctags-better-php
 
-* [MacVim](https://code.google.com/p/macvim/): MacVim must be compiled with python & lua support. Using brew, MacVim comes with python by default. We must precise to brew to build the formula with lua support like so:
+* [MacVim](https://code.google.com/p/macvim/): MacVim must be compiled with python & lua support. Using brew, MacVim comes with python by default. We must inform brew to build the formula with lua support:
 
 		brew install macvim --with-lua
 
@@ -54,11 +54,6 @@ Manual Installation
 4. Open vim and install the plugins using the following command:
 	
 		:PluginInstall
-
-5. The last step here is to compile the vimproc extension for Vim:
-
-		cd ~/.vim/bunder/vimproc
-		make
 
 You should be good to go now. Make sure you read the usage section to make sure you're using the full potential of this config.
 
@@ -99,6 +94,3 @@ Here is a list of all the available plugin with this config:
 
 * [vim-sensible](https://github.com/tpope/vim-sensible): Think of sensible.vim as one step above 'nocompatible' mode: a universal set of defaults that (hopefully) everyone can agree on.
 
-* [vimproc](https://github.com/Shougo/vimproc.vim): Interactive command execution in Vim.
-
-* [vimshell](https://github.com/Shougo/vimshell.vim): Powerful shell implemented by vim.

@@ -9,34 +9,39 @@ call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Configure plugins
-Plugin 'itchyny/landscape.vim'
-Plugin 'morhetz/gruvbox'
+" Vim modifiers
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-sensible'
+
+" Utilities
+Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
-Plugin 'yegappan/grep'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'tobyS/pdv'
-Plugin 'tobyS/vmustache'
-Plugin 'StanAngeloff/php.vim'
+Plugin 'yegappan/grep'
+Plugin 'mileszs/ack.vim'
+
+" Auto-completion
+Plugin 'Shougo/neocomplete.vim'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'ervandew/supertab'
-Plugin 'scrooloose/syntastic'
-Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-airline'
+
+"Color schemes
+Plugin 'morhetz/gruvbox'
 Plugin 'nicholasc/vim-black'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-fugitive'
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-sensible'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
+Plugin 'nicholasc/vim-seti'
+
+" Language files
 Plugin 'groenewege/vim-less'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
-Plugin 'tpope/vim-surround'
-Plugin 'apachelogs.vim'
 Plugin 'othree/html5.vim'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 filetype plugin indent on
@@ -48,20 +53,17 @@ set tabstop=4
 set shiftwidth=4
 set synmaxcol=512
 set guioptions-=r
-set guifont=Monaco:h12
+set guifont=Monaco:h13
+set showtabline=2
 
 " Default theme
-colorscheme black
+colorscheme gruvbox 
 
 " Map F13 to edit this file
 map <F13> :e ~/.vim/vimrc<cr>
 
 " Map F14 to edit the GUI file
 map <F14> :e ~/.gvimrc<cr>
-
-" Create a terminal buffer
-map <D-B> :VimShell<cr>
-let g:vimshell_editor_command = "mvim"
 
 " Hard to fight old habbits...
 map <leader>t :CtrlPCurWD<cr>
@@ -112,6 +114,7 @@ map <leader>gm :Git mergetool<cr>
 " Map nerdtree opening
 map <leader>n :NERDTreeToggle<cr>
 let g:NERDTreeWinSize = 36 
+let g:NERDTreeQuitOnOpen 3= 1
 
 " Map nerdcommenter toggle
 map <leader>c :NERDComToggleComment<cr>
@@ -125,3 +128,4 @@ map <D-C> :!ctags -R --languages=php --exclude='.*'<cr>
 
 " Set the expected tags file
 set tags=./tags
+
