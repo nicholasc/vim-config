@@ -1,3 +1,3 @@
 "Basic sets
-set colorcolumn=120
+set colorcolumn=100
 set transparency=0

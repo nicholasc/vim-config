@@ -15,6 +15,7 @@ Plugin 'tpope/vim-sensible'
 
 " Utilities
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
@@ -22,7 +23,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tobyS/pdv'
-Plugin 'yegappan/grep'
 Plugin 'mileszs/ack.vim'
 
 " Auto-completion
@@ -36,7 +36,6 @@ Plugin 'nicholasc/vim-black'
 Plugin 'nicholasc/vim-seti'
 
 " Language files
-Plugin 'groenewege/vim-less'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
@@ -57,6 +56,7 @@ set guifont=Monaco:h13
 set showtabline=2
 
 " Default theme
+set background=dark
 colorscheme gruvbox 
 
 " Map F13 to edit this file
@@ -110,6 +110,13 @@ map <leader>gd :Gdiff<cr>
 map <leader>gp :Gpull<cr>
 map <leader>gg :Gpush<cr>
 map <leader>gm :Git mergetool<cr>
+
+" Search the current folder
+function! AckSearch()
+  let name = input('Enter search: ')
+  execute 'Ack "' . name . '"'
+endfunction
+map <leader>s :call AckSearch()<cr>
 
 " Map nerdtree opening
 map <leader>n :NERDTreeToggle<cr>

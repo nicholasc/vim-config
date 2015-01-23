@@ -64,9 +64,13 @@ All the plugins here are clones of their original repository. Vundle is being us
 
 Here is a list of all the available plugin with this config:
 
+* [ack](https://github.com/mileszs/ack.vim): Vim plugin for the Perl module / CLI script 'ack'.
+
 * [CtrlP](https://github.com/kien/ctrlp.vim): Fuzzy file, buffer, mru, tag, etc finder.
 
-* [grep](https://github.com/yegappan/grep): Plugin to integrate Grep search tools with Vim.
+* [gruvbox](https://github.com/morhetz/gruvbox): Retro groove color scheme for Vim.
+
+* [html5](https://github.com/othree/html5.vim): HTML5 omnicomplete and syntax.
 
 * [neocomplete](https://github.com/Shougo/neocomplete.vim): Next generation completion framework after neocomplcache.
 
@@ -92,5 +96,16 @@ Here is a list of all the available plugin with this config:
 
 * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion): EasyMotion provides a much simpler way to use some motions in vim.
 
+* [vim-fugitive](https://github.com/tpope/vim-fugitive): a Git wrapper so awesome, it should be illegal.
+
+* [vim-gitgutter ](https://github.com/airblade/vim-gitgutter): A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+
+* [vim-javascript](https://github.com/pangloss/vim-javascript): Vastly improved Javascript indentation and syntax support in Vim.
+
+* [vim-json](https://github.com/elzr/vim-json): A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
+
+* [vim-markdown](https://github.com/plasticboy/vim-markdown): Markdown Vim Mode.
+
 * [vim-sensible](https://github.com/tpope/vim-sensible): Think of sensible.vim as one step above 'nocompatible' mode: a universal set of defaults that (hopefully) everyone can agree on.
 
+* [vim-seti](https://github.com/nicholasc/vim-seti): A color scheme for Vim inspired by Jesse Weed's seti-syntax for Atom.
