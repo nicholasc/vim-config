@@ -90,9 +90,6 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#min_keyword_length = 3
 
-" PHP Complete Extended configuration
-let g:phpcomplete_index_composer_command = 'composer'
-
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -156,12 +153,13 @@ map <D-C> :!ctags -R --languages=php --exclude='.*'<cr>
 " Set the expected tags file
 set tags=./tags
 
-" Custom gutter
+" Custom gutter background colors
 hi SignColumn guibg=#282828
 hi GitGutterAdd guibg=#282828
 hi GitGutterChange guibg=#282828
 hi GitGutterDelete guibg=#282828
 hi GitGutterChangeDelete guibg=#282828
 
+" Create a dummy sign in for a permanent gutter column
 autocmd BufEnter * sign define dummy
 autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
