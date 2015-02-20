@@ -10,19 +10,19 @@ There are some dependencies in order to get this configuration working properly 
 
 * [CMake](http://www.cmake.org/cmake/resources/software.html): Make is a family of tools designed to build, test and package software. CMake is used to control the software compilation process using simple platform and compiler independent configuration files.
 
-	I recommend installing CMake with Homebrew(http://brew.sh/) using the following command:
+	I recommend installing CMake with [Homebrew](http://brew.sh/) using the following command:
 
 		brew install cmake
 
 * [Ruby](https://www.ruby-lang.org/en/): A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
 
-	I recommend install Ruby with Homebrew(http://brew.sh/) using the following command:
+	I recommend install Ruby with [Homebrew](http://brew.sh/) using the following command:
 
 		brew install ruby
 
 * [Python](https://www.python.org/): Python is a programming language that lets you work quickly and integrate systems more effectively.
 
-	I recommend install Ruby with Homebrew(http://brew.sh/) using the following command:
+	I recommend install Python with [Homebrew](http://brew.sh/) using the following command:
 
 		brew install python
 
@@ -55,8 +55,6 @@ Manual Installation
 	
 		:PluginInstall
 
-You should be good to go now. Make sure you read the usage section to make sure you're using the full potential of this config.
-
 Plugins
 =======
 
@@ -88,6 +86,8 @@ Here is a list of all the available plugin with this config:
 
 * [syntastic](https://github.com/scrooloose/syntastic): Syntax checking hacks for vim.
 
+* [tabular](https://github.com/godlygeek/tabular): Vim script for text filtering and alignment.
+
 * [tagbar](https://github.com/majutsushi/tagbar): Vim plugin that displays tags in a window, ordered by scope.
 
 * [vim-airline](https://github.com/bling/vim-airline): Lean & mean status/tabline for vim that's light as air.
@@ -103,8 +103,6 @@ Here is a list of all the available plugin with this config:
 * [vim-javascript](https://github.com/pangloss/vim-javascript): Vastly improved Javascript indentation and syntax support in Vim.
 
 * [vim-json](https://github.com/elzr/vim-json): A better JSON for Vim: distinct highlighting of keywords vs values, JSON-specific (non-JS) warnings, quote concealing. Pathogen-friendly.
-
-* [vim-less](https://github.com/groenewege/vim-less)vim syntax for LESS (dynamic CSS).
 
 * [vim-markdown](https://github.com/plasticboy/vim-markdown): Markdown Vim Mode.
 
