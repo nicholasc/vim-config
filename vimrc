@@ -1,4 +1,4 @@
-"Spécifications Required
+" Required
 set nocompatible
 filetype off
 
