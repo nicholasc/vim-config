@@ -69,29 +69,11 @@ set backspace=indent,eol,start
 set background=dark
 colorscheme gruvbox 
 
-" Map F13 to edit this file
+" Map F13 & F14 to edit this file or the GUI file
 map <F13> :e ~/.vim/vimrc<cr>
+map <F14> :e ~/.vim/gvimrc<cr>
 
-" Map F14 to edit the GUI file
-map <F14> :e ~/.gvimrc<cr>
-
-" Hard to fight old habbits...
-map <leader>t :CtrlPCurWD<cr>
-
-" PHP DocBlock Generator
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates"
-map <D-D> :call pdv#DocumentCurrentLine()<cr>
-
-" EasyMotion use one leader
-let g:EasyMotion_leader_key = '<Leader>' 
-set completeopt=longest,menuone
-
-" Enable neocomplcache at startup
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#min_keyword_length = 3
-
-" Enable omni completion.
+" Enable omni completion for web file types
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -99,7 +81,17 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
-" CtrlP configuration
+" Fugitive Configuration
+map <leader>gw :Gwrite<cr>
+map <leader>gs :Gstatus<cr>
+map <leader>gc :Gcommit<cr>
+map <leader>gd :Gdiff<cr>
+map <leader>gp :Gpull<cr>
+map <leader>gg :Gpush<cr>
+map <leader>gm :Git mergetool<cr>
+
+" CtrlP Configuration
+map <leader>t :CtrlPCurWD<cr> 
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': [],
@@ -107,52 +99,54 @@ let g:ctrlp_prompt_mappings = {
   \ }
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.svn$|\.phalcon|\.phpcomplete_extended|dump$|',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$|\.swp'
   \ }
 
-" Fugitive mapping
-map <leader>gw :Gwrite<cr>
-map <leader>gs :Gstatus<cr>
-map <leadeR>gc :Gcommit<cr>
-map <leader>gd :Gdiff<cr>
-map <leader>gp :Gpull<cr>
-map <leader>gg :Gpush<cr>
-map <leader>gm :Git mergetool<cr>
-
-" Supertab settings
-let g:SuperTabDefaultCompletionType = "<c-n>"
+" Supertab Configuration
 let g:SuperTabMappingForward('')
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
-" Search the current folder
-function! AckSearch()
-  let name = input('Enter search: ')
-  execute 'Ack "' . name . '"'
-endfunction
-map <leader>s :call AckSearch()<cr>
+" Tagbar Configuration
+map <leader>r :TagbarOpen fc<cr>
+let g:tagbar_width = 36
 
-" Map nerdtree opening
+" PHP DocBlock Configuration
+let g:pdv_template_dir = $HOME . "/.vim/bundle/pdv/templates"
+map <D-D> :call pdv#DocumentCurrentLine()<cr>
+
+" EasyMotion Configuration
+let g:EasyMotion_leader_key = '<Leader>' 
+set completeopt=longest,menuone
+
+" Neocomplete Configuration
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#min_keyword_length = 3
+
+" NERDTree Configuration
 map <leader>n :NERDTreeToggle<cr>
 let g:NERDTreeWinSize = 36 
 let g:NERDTreeQuitOnOpen = 1
 
-" Map nerdcommenter toggle
+" NERCCommenter Configuration
 map <leader>c :NERDComToggleComment<cr>
 
-" Configure Tagbar plugin
-map <leader>tb :TagbarOpen fc<cr>
-let g:tagbar_width = 36
-
-" Tabularize settings
+" Tabularize Configuration
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
-" Generate ctags for the current directory
+" Ctags Configuration
+set tags=./tags
 map <D-C> :!ctags -R --languages=php --exclude='.*'<cr>
 
-" Set the expected tags file
-set tags=./tags
+" Implement a basic Ack search
+map <leader>s :call AckSearch()<cr>
+function! AckSearch()
+  let name = input('Enter search: ')
+  execute 'Ack "' . name . '"'
+endfunction
 
 " Custom gutter background colors
 hi SignColumn guibg=#282828
@@ -164,3 +158,4 @@ hi GitGutterChangeDelete guibg=#282828
 " Create a dummy sign in for a permanent gutter column
 autocmd BufEnter * sign define dummy
 autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+
