@@ -23,6 +23,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tobyS/pdv'
+Plugin 'tobyS/vmustache'
 Plugin 'mileszs/ack.vim'
 
 " Auto-completion
@@ -52,7 +53,7 @@ set tabstop=4
 set shiftwidth=4
 set synmaxcol=512
 set guioptions-=r
-set guifont=Monaco:h13
+set guifont=Monaco:13
 set showtabline=2
 
 " Default theme
