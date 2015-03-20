@@ -26,10 +26,12 @@ Plugin 'tobyS/pdv'
 Plugin 'tobyS/vmustache'
 Plugin 'mileszs/ack.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'bitc/vim-bad-whitespace'
 
 " Auto-completion
 Plugin 'Shougo/neocomplete.vim'
-Plugin 'm2mdas/phpcomplete-extended'
+"Plugin 'm2mdas/phpcomplete-extended'
 Plugin 'ervandew/supertab'
 
 " Color schemes
@@ -52,8 +54,10 @@ filetype plugin indent on
 set cul
 set number
 set hidden
+set hlsearch
 set expandtab
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set synmaxcol=512
 set guioptions-=r
@@ -63,18 +67,21 @@ set backspace=indent,eol,start
 
 " Color scheme configuration
 set background=dark
-colorscheme gruvbox 
+colorscheme gruvbox
 
 " Map F13 & F14 to edit configuration
 map <F13> :e ~/.vim/vimrc<cr>
 map <F14> :e ~/.vim/gvimrc<cr>
 
+" Map to remove search highlight
+map <leader><Space>:set nohlsearch<cr>
+
 " PHP DocBlock configuration
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates"
 map <D-D> :call pdv#DocumentCurrentLine()<cr>
 
-" EasyMotion configuration 
-let g:EasyMotion_leader_key = '<Leader>' 
+" EasyMotion configuration
+let g:EasyMotion_leader_key = '<Leader>'
 set completeopt=longest,menuone
 
 " SuperTab configuration
@@ -102,7 +109,7 @@ let g:ctrlp_prompt_mappings = {
   \ }
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.svn$|\.phalcon|\.phpcomplete_extended|dump$|',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$|\.swp$'
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$|\.swp$|index_cache|tags'
   \ }
 
 " PHP Complete Extended configuration
@@ -123,8 +130,8 @@ map <leader>gm :Git mergetool<cr>
 
 " NERDTree configuration
 map <leader>n :NERDTreeToggle<cr>
-let g:NERDTreeWinSize = 36 
-let g:NERDTreeQuitOnOpen 3= 1
+let g:NERDTreeWinSize = 36
+let g:NERDTreeQuitOnOpen = 1
 
 " NERDCommenter configuration
 map <leader>c :NERDComToggleComment<cr>
@@ -142,6 +149,13 @@ map <leader>s :call AckSearch()<cr>
 fun! AckSearch()
   let name = input('Enter search: ')
   execute 'Ack "' . name . '"'
+endfunction
+
+" Dash configuration
+map <leader>sa :call DashSearch()<cr>
+fun! DashSearch()
+  let name = input('Enter search: ')
+  execute 'Dash ' . name
 endfunction
 
 " GitGutter configuration
