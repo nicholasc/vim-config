@@ -28,10 +28,14 @@ Plugin 'rking/ag.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'bitc/vim-bad-whitespace'
+Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'tpope/vim-dispatch'
 
-" Auto-completion
+" Completion
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'ervandew/supertab'
+Plugin 'Raimondi/delimitMate'
+Plugin '2072/PHP-Indenting-for-VIm'
 
 " Color schemes
 Plugin 'morhetz/gruvbox'
@@ -44,6 +48,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'OmniSharp/omnisharp-vim'
 
 call vundle#end()
 syntax on
@@ -51,10 +56,12 @@ filetype plugin indent on
 
 " Basic sets
 set cul
+set nowrap
 set number
 set hidden
 set hlsearch
 set incsearch
+set autoread
 set wildmenu
 set lazyredraw
 set expandtab
@@ -76,17 +83,42 @@ set writebackup
 
 " Reset leader key to comma
 let mapleader=","
+let maplocalleader="\\"
 
 " Color scheme configuration
 set background=dark
 colorscheme gruvbox
 
-" Map F13 & F14 to edit configuration
-map <F13> :e ~/.vim/vimrc<cr>
-map <F14> :e ~/.vim/gvimrc<cr>
+" Map vimrc files edition
+map <leader>ev :e $MYVIMRC<cr>
+map <leader>eg :e $MYGVIMRC<cr>
+map <leader>sv :source $MYVIMRC<cr>
+map <leader>sg :source $MYGVIMRC<cr>
+
+" Remap shift on homerow
+map H ^
+map L $
+map J G
+map K gg
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Gotta stop cheating (disabled mapping for my own good)
+map <Up> <nop>
+map <Left> <nop>
+map <Down> <nop>
+map <Right> <nop>
+imap <Up> <nop>
+imap <Left> <nop>
+imap <Down> <nop>
+imap <Right> <nop>
 
 " Map to remove search highlight
-map <leader><space>:nohlsearch<cr>
+map <leader><esc> :nohlsearch<cr>
 
 " PHP DocBlock configuration
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates"
@@ -134,6 +166,7 @@ map <leader>ss :mksession! session.vim<cr>
 map <leader>so :source session.vim<cr>
 
 " Fugitive configuration
+map <leader>ga :silent Git add %<cr>
 map <leader>gw :Gwrite<cr>
 map <leader>gs :Gstatus<cr>
 map <leadeR>gc :Gcommit<cr>
@@ -191,3 +224,7 @@ hi GitGutterDelete guibg=#282828
 hi GitGutterChangeDelete guibg=#282828
 autocmd BufEnter * sign define DefaultColumnSign
 autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
+
+if has("gui_macvim")
+    set shell=/bin/bash\ -l
+endif
