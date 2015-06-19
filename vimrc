@@ -9,50 +9,60 @@ call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Vim modifiers
+" Utilities
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-sensible'
-
-" Utilities
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tobyS/pdv'
-Plugin 'tobyS/vmustache'
 Plugin 'rking/ag.vim'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'bitc/vim-bad-whitespace'
+Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'tpope/vim-dispatch'
+Plugin 'ryanoasis/vim-webdevicons'
+Plugin 'ryanoasis/nerd-filetype-glyphs-fonts-patcher'
+Plugin 'Yggdroot/indentLine'
+Plugin 'joonty/vdebug'
 
-" Completion
+" Auto-completion
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'ervandew/supertab'
 Plugin 'Raimondi/delimitMate'
-Plugin '2072/PHP-Indenting-for-VIm'
 
 " Color schemes
 Plugin 'morhetz/gruvbox'
 Plugin 'nicholasc/vim-black'
 Plugin 'nicholasc/vim-seti'
+Plugin '2072/PHP-Indenting-for-VIm'
 
-" Language files
+" Syntax highlight
 Plugin 'StanAngeloff/php.vim'
+Plugin 'fatih/vim-go'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'lunaru/vim-less'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
+
+" Set gui options
+if has("gui_macvim")
+    set transparency=2
+endif
+
+" Set color column
+if (exists('+colorcolumn'))
+    set colorcolumn=90
+endif
 
 " Basic sets
 set cul
@@ -62,23 +72,25 @@ set hidden
 set hlsearch
 set incsearch
 set autoread
+set visualbell
 set wildmenu
 set lazyredraw
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set synmaxcol=512
+set synmaxcol=120
 set guioptions-=r
-set guifont=Monaco:h13
+set relativenumber
+set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+set shell=/bin/bash\ -l
 set showtabline=2
 set backspace=indent,eol,start
 
 " Change backup directory
 set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/.vim-tmp
+set directory=~/.vim-tmp
 set writebackup
 
 " Reset leader key to comma
@@ -101,21 +113,16 @@ map L $
 map J G
 map K gg
 
-" Enable the list of buffers
+" Airline configuration
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" Gotta stop cheating (disabled mapping for my own good)
-map <Up> <nop>
-map <Left> <nop>
-map <Down> <nop>
-map <Right> <nop>
-imap <Up> <nop>
-imap <Left> <nop>
-imap <Down> <nop>
-imap <Right> <nop>
+" Gotta stop cheating (disabled arrow mapping for my own good)
+noremap <Up> <nop>
+noremap <Left> <nop>
+noremap <Down> <nop>
+noremap <Right> <nop>
 
 " Map to remove search highlight
 map <leader><esc> :nohlsearch<cr>
@@ -165,6 +172,10 @@ map <leader>pu :!composer update --no-ansi<cr>
 map <leader>ss :mksession! session.vim<cr>
 map <leader>so :source session.vim<cr>
 
+" Indent line configuration
+let g:indentLine_color_gui = '#3e3833'
+let g:indentLine_char = '|'
+
 " Fugitive configuration
 map <leader>ga :silent Git add %<cr>
 map <leader>gw :Gwrite<cr>
@@ -206,7 +217,7 @@ fun! DashSearch()
 endfunction
 
 " Erase trailing line at the end of file
-autocmd BufWritePre *.php,*.py,*.js,*.txt,*.md,*.rb :call <SID>StripEOFLines()
+autocmd BufWritePre *.php,*.py,*.js,*.css,*.txt,*.md,*.rb :call <SID>StripEOFLines()
 function! <SID>StripEOFLines()
     let _s=@/
     let l = line(".")
@@ -217,14 +228,24 @@ function! <SID>StripEOFLines()
 endfunction
 
 " GitGutter configuration
-hi SignColumn guibg=#282828
-hi GitGutterAdd guibg=#282828
-hi GitGutterChange guibg=#282828
-hi GitGutterDelete guibg=#282828
-hi GitGutterChangeDelete guibg=#282828
+hi Normal guibg=#202020
+hi SignColumn guibg=#202020
+hi GitGutterAdd guibg=#202020
+hi GitGutterChange guibg=#202020
+hi GitGutterDelete guibg=#202020
+hi GitGutterChangeDelete guibg=#202020
+
+" Vdebug configuration
+hi DbgCurrentLine guifg=#000000 guibg=#fb4934
+hi DbgCurrentSign guifg=#000000 guibg=#fb4934
+hi DbgBreakptLine guifg=#000000 guibg=#b8bb26
+hi DbgBreakptSign guifg=#000000 guibg=#b8bb26
+sign define current text=-> texthl=DbgCurrentSign linehl=DbgCurrentLine
+sign define breakpt text=* texthl=DbgBreakptSign linehl=DbgBreakptLine
+
 autocmd BufEnter * sign define DefaultColumnSign
 autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
 
-if has("gui_macvim")
-    set shell=/bin/bash\ -l
-endif
+" Lazy var dumps
+nmap <leader>v ivar_dump(); die;<esc>6hi
+imap <leader>v var_dump(); die;<esc>6hi
