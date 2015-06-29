@@ -1,6 +1,6 @@
 Introduction
 ===========
-The main goal with this vim configuration is to keep things lightweight, fast and easy to use. I use it everyday both at work and at home and it works great for me. It supports Mac OS X, Windows. It will be adapted to linux shortly. I constantly review and modifiy this configuration and I'm always open to suggestions and/or contributions.
+The main goal with this vim configuration is to keep things lightweight, fast and easy to use. I use it everyday both at work and at home and it works great for me. It supports Mac OS X & Windows. It will be adapted for Linux shortly. I constantly review and modifiy this configuration and I'm always open to suggestions and/or contributions.
 
 Thanks for stopping by and hopefully you find something of use.
 
@@ -20,19 +20,20 @@ Manual Installation
 
 1. Check out the current source from github:
 
-	Mac OS X & Windows:
+	* Mac OS X & Windows:
 		git clone https://github.com/nicholasc/vim-config.git $HOME/.vim
 
 2. Create symlinks for vimrc:
 
-    Mac OS X:
+    * Mac OS X:
 		ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
-    Windows:
+    * Windows:
         cmd /c mklink $HOME/.vimrc $HOME/.vim/.vimrc
 
 3. Clone vundle repository inside the bundle folder:
-    On Windows, follow these steps[https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows] before continuing.
+
+    *On Windows, follow these steps[https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows] before continuing.*
 
 		git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
 
