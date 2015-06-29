@@ -1,59 +1,44 @@
 Introduction
 ===========
-I find this configuration to be very simple yet powerful. I'm trying to get VIM to be very versatile while keeping everything lightweight and easy to use. This is the configuration that I use every day at work and it works great for me. I'm always open to suggestions/contributions. Thanks for stopping by and I hopefully you'll enjoy my config.
+The main goal with this vim configuration is to keep things lightweight, fast and easy to use. I use it everyday both at work and at home and it works great for me. It supports Mac OS X, Windows. It will be adapted to linux shortly. I constantly review and modifiy this configuration and I'm always open to suggestions and/or contributions.
 
-N.B.: This read me is currently written for Mac OSX only. It should not be too complicated to install under Linux. Windows... I have no idea.
+Thanks for stopping by and hopefully you find something of use.
 
 Requirements
 ============
-There are some dependencies in order to get this configuration working properly and smoothly. Here is a list of all thirdparty libraries you will need on your computer before you can install. Please note that if you install these dependencies via Homebrew(http://brew.sh/), you will most likely have to added their locations to your PATH.
 
-* [CMake](http://www.cmake.org/cmake/resources/software.html): Make is a family of tools designed to build, test and package software. CMake is used to control the software compilation process using simple platform and compiler independent configuration files.
-
-	I recommend installing CMake with [Homebrew](http://brew.sh/) using the following command:
-
-		brew install cmake
-
-* [Ruby](https://www.ruby-lang.org/en/): A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
-
-	I recommend install Ruby with [Homebrew](http://brew.sh/) using the following command:
-
-		brew install ruby
-
-* [Python](https://www.python.org/): Python is a programming language that lets you work quickly and integrate systems more effectively.
-
-	I recommend install Python with [Homebrew](http://brew.sh/) using the following command:
-
-		brew install python
-
-* [ctags](https://github.com/shawncplus/phpcomplete.vim/wiki/Patched-ctags): Follow the instructions on the Patched-ctags repository to compile it from source and get better completion for PHP or use the following commands to install via brew:
-
-		curl https://gist.githubusercontent.com/complex857/9570127/raw/dec0f388be51d9ab6888db6d0ee3e82dfc37837c/ctags-better-php.rb > /usr/local/Library/Formula/ctags-better-php.rb
-		brew install ctags-better-php
-
+Mac OS X:
 * [MacVim](https://code.google.com/p/macvim/): MacVim must be compiled with python & lua support. Using brew, MacVim comes with python by default. We must inform brew to build the formula with lua support:
 
 		brew install macvim --with-lua
 
+Windows:
+* [Vim for Windows](https://bitbucket.org/Haroogan/vim-for-windows/downloads): Download the version compiled with both Python and Lua.
+
 Manual Installation
 ===================
 
-1. Check out the source from github:
+1. Check out the current source from github:
 
-		git clone https://github.com/nicholasc/vim-config.git ~/.vim
+	Mac OS X & Windows:
+		git clone https://github.com/nicholasc/vim-config.git $HOME/.vim
 
-2. Create symlinks for vimrc & gvim:
+2. Create symlinks for vimrc:
 
-		ln -s ~/.vim/vimrc ~/.vimrc
-		ln -s ~/.vim/gvimrc ~/.gvimrc
+    Mac OS X:
+		ln -s $HOME/.vim/vimrc $HOME/.vimrc
+
+    Windows:
+        cmd /c mklink $HOME/.vimrc $HOME/.vim/.vimrc
 
 3. Clone vundle repository inside the bundle folder:
+    On Windows, follow these steps[https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows] before continuing.
 
-		git clone https://github.com/gmarik/Vundle.vim ~/.vim/bundle/Vundle.vim
+		git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
 
-4. Open vim and install the plugins using the following command:
-	
-		:PluginInstall
+4. Open vim, discard errors and install the plugins using the following command:
+
+        :BundleInstall
 
 Plugins
 =======
@@ -75,8 +60,6 @@ Here is a list of all the available plugin with this config:
 * [nerdcommenter](https://github.com/scrooloose/nerdcommenter): Vim plugin for intensely orgasmic commenting.
 
 * [nerdtree](https://github.com/scrooloose/nerdtree): A tree explorer plugin for vim.
-
-* [pdv](https://github.com/tobyS/pdv): PHP Documentor for VIM - Generates PHP docblocks.
 
 * [php](https://github.com/StanAngeloff/php.vim): Up-to-date PHP syntax file (5.3, 5.4 & 5.5 support; basic 5.6 support).
 

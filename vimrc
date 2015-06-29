@@ -2,8 +2,11 @@
 set nocompatible
 filetype off
 
+" Vundle configuration {{{
 " Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+let path='$HOME/.vim/bundle'
+call vundle#rc('$HOME/.vim/bundle')
 call vundle#begin()
 
 " Let Vundle manage Vundle, required
@@ -53,18 +56,9 @@ Plugin 'lunaru/vim-less'
 call vundle#end()
 syntax on
 filetype plugin indent on
+" }}}
 
-" Set gui options
-if has("gui_macvim")
-    set transparency=2
-endif
-
-" Set color column
-if (exists('+colorcolumn'))
-    set colorcolumn=90
-endif
-
-" Basic sets
+" Basic configuration {{{
 set cul
 set nowrap
 set number
@@ -80,18 +74,42 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set synmaxcol=120
-set guioptions-=r
 set relativenumber
-set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
-set shell=/bin/bash\ -l
 set showtabline=2
 set backspace=indent,eol,start
+set colorcolumn=90
+if has("unix")
+    set shell=/bin/bash\ -l
+endif
+" }}}
 
-" Change backup directory
+" Graphical User Interface configuration {{{
+if has("gui_running")
+    " Remove all toolbars and scroll bars
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+
+    " Set transparency and shell for osx
+    if has("gui_macvim")
+        set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+        set transparency=2
+    endif
+endif
+" }}}
+
+" Swap files configuration {{{
 set backup
-set backupdir=~/.vim-tmp
-set directory=~/.vim-tmp
 set writebackup
+if has("unix")
+    set backupdir=/tmp
+    set directory=/tmp
+elseif has("win32")
+    set backupdir=$HOME/AppData/Local/Temp
+    set directory=$HOME/AppData/Local/Temp
+endif
+"}}}
 
 " Reset leader key to comma
 let mapleader=","
@@ -128,7 +146,7 @@ noremap <Right> <nop>
 map <leader><esc> :nohlsearch<cr>
 
 " PHP DocBlock configuration
-let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates"
+let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates"
 map <D-D> :call pdv#DocumentCurrentLine()<cr>
 
 " EasyMotion configuration
@@ -153,7 +171,9 @@ autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 " CtrlP configuration
 map <leader>t :CtrlPCurWD<cr>
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+if has("unix")
+    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+endif
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_prompt_mappings = {
