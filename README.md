@@ -22,17 +22,17 @@ Manual Installation
 
 	* Mac OS X & Windows:
 
-		git clone https://github.com/nicholasc/vim-config.git $HOME/.vim
+		    git clone https://github.com/nicholasc/vim-config.git $HOME/.vim
 
 2. Create symlinks for vimrc:
 
     * Mac OS X:
 
-		ln -s $HOME/.vim/vimrc $HOME/.vimrc
+		    ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
     * Windows:
 
-        cmd /c mklink $HOME/.vimrc $HOME/.vim/.vimrc
+            cmd /c mklink $HOME/.vimrc $HOME/.vim/.vimrc
 
 3. Clone vundle repository inside the bundle folder:
 
