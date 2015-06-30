@@ -91,10 +91,18 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=L
 
-    " Set transparency and shell for osx
-    if has("gui_macvim")
-        set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
-        set transparency=2
+    " Detect unix operating system
+    if has("unix")
+        " Retrieve the operating system name
+        let s:uname = system("uname -s")
+
+        " Set font & transparency according to system
+        if s:uname == "Darwin"
+            set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+            set transparency=2
+        else
+            set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
+        endif
     endif
 endif
 " }}}
