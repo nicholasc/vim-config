@@ -32,6 +32,7 @@ Plugin 'ryanoasis/vim-webdevicons'
 Plugin 'ryanoasis/nerd-filetype-glyphs-fonts-patcher'
 Plugin 'Yggdroot/indentLine'
 Plugin 'joonty/vdebug'
+Plugin 'docteurklein/php-getter-setter.vim'
 
 " Auto-completion
 Plugin 'Shougo/neocomplete.vim'
@@ -91,6 +92,9 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=L
 
+    " Set default lines and columns
+    set lines=50 columns=98
+
     " Detect unix operating system
     if has("unix")
         " Retrieve the operating system name
@@ -102,6 +106,14 @@ if has("gui_running")
             set transparency=2
         else
             set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
+
+            " Mac OS like bindings for linux
+            map <M-{> :tabp<cr>
+            map <M-}> :tabn<cr>
+            map <M-s> :w<cr>
+            map <M-w> :bd<cr>
+            map <M-t> :tabnew<cr>
+            map <M-q> :qa<cr>
         endif
     endif
 endif
