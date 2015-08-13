@@ -36,13 +36,17 @@ Manual Installation
 
 3. Clone vundle repository inside the bundle folder:
 
-    *On Windows, follow these steps[https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows] before continuing.*
+    *On Windows, follow these [steps]{https://github.com/gmarik/Vundle.vim/wiki/Vundle-for-Windows<Plug>(neocomplete_fallback) before continuing.*
 
 		git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
 
 4. Open vim, discard errors and install the plugins using the following command:
 
         :BundleInstall
+
+5. Install Vimproc's dependencies using the following command:
+
+        :VimProcInstall
 
 Plugins
 =======

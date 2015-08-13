@@ -1,6 +1,5 @@
 " Required
 set nocompatible
-filetype off
 
 " Vundle configuration {{{
 " Set the runtime path to include Vundle and initialize
@@ -17,7 +16,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/syntastic'
@@ -28,10 +27,11 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'tpope/vim-dispatch'
-Plugin 'ryanoasis/vim-webdevicons'
-Plugin 'ryanoasis/nerd-filetype-glyphs-fonts-patcher'
+Plugin 'ryanoasis/vim-devicons'
 Plugin 'Yggdroot/indentLine'
 Plugin 'joonty/vdebug'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'wincent/ferret'
 
 " Auto-completion
 Plugin 'Shougo/neocomplete.vim'
@@ -63,23 +63,20 @@ set cul
 set nowrap
 set number
 set hidden
-set hlsearch
-set incsearch
 set autoread
-set visualbell
+set novisualbell
 set wildmenu
 set lazyredraw
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set synmaxcol=120
-set relativenumber
 set showtabline=2
+set relativenumber
+set hlsearch incsearch
+set nobackup noswapfile
+set synmaxcol=120 colorcolumn=90
+set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set backspace=indent,eol,start
-set colorcolumn=90
+
 if has("unix")
-    set shell=/bin/bash\ -l
+    set shell=/bin/bash
 endif
 " }}}
 
@@ -91,6 +88,9 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=L
 
+    " Set default window size
+    set lines=58 columns=100
+
     " Set transparency and shell for osx
     if has("gui_macvim")
         set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
@@ -99,23 +99,12 @@ if has("gui_running")
 endif
 " }}}
 
-" Swap files configuration {{{
-set backup
-set writebackup
-if has("unix")
-    set backupdir=/tmp
-    set directory=/tmp
-elseif has("win32")
-    set backupdir=$HOME/AppData/Local/Temp
-    set directory=$HOME/AppData/Local/Temp
-endif
-"}}}
-
 " Reset leader key to comma
 let mapleader=","
 let maplocalleader="\\"
 
 " Color scheme configuration
+set t_Co=256
 set background=dark
 colorscheme gruvbox
 
@@ -141,6 +130,14 @@ noremap <Up> <nop>
 noremap <Left> <nop>
 noremap <Down> <nop>
 noremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Left> <nop>
+inoremap <Down> <nop>
+inoremap <Right> <nop>
+inoremap <A-Up> <nop>
+inoremap <A-Left> <nop>
+inoremap <A-Down> <nop>
+inoremap <A-Right> <nop>
 
 " Map to remove search highlight
 map <leader><esc> :nohlsearch<cr>
@@ -184,17 +181,12 @@ let g:ctrlp_prompt_mappings = {
 " PHP Complete Extended configuration
 let g:phpcomplete_index_composer_command = "composer"
 
-" Composer configuration
-map <leader>pi :!composer install --no-ansi<cr>
-map <leader>pu :!composer update --no-ansi<cr>
-
-" Session configuration
-map <leader>ss :mksession! session.vim<cr>
-map <leader>so :source session.vim<cr>
-
 " Indent line configuration
 let g:indentLine_color_gui = '#3e3833'
 let g:indentLine_char = '|'
+
+" DelimitMate configuration
+let delimitMate_expand_cr = 1
 
 " Fugitive configuration
 map <leader>ga :silent Git add %<cr>
@@ -217,24 +209,6 @@ map <leader>c :NERDComToggleComment<cr>
 " TagBar configuration
 map <leader>tb :TagbarOpen fc<cr>
 let g:tagbar_width = 36
-
-" cTags configuration
-set tags=./tags
-map <D-C> :!ctags -R --languages=php --exclude='.*'<cr>
-
-" Ack configuration
-map <leader>s :call AgSearch()<cr>
-fun! AgSearch()
-  let name = input('Enter search: ')
-  execute 'Ag ' . name
-endfunction
-
-" Dash configuration
-map <leader>sa :call DashSearch()<cr>
-fun! DashSearch()
-  let name = input('Enter search: ')
-  execute 'Dash ' . name
-endfunction
 
 " Erase trailing line at the end of file
 autocmd BufWritePre *.php,*.py,*.js,*.css,*.txt,*.md,*.rb :call <SID>StripEOFLines()
