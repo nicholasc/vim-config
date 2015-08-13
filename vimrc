@@ -30,6 +30,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'Yggdroot/indentLine'
 Plugin 'joonty/vdebug'
+Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'wincent/ferret'
 
@@ -88,13 +89,29 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=L
 
-    " Set default window size
-    set lines=58 columns=100
+    " Set default lines and columns
+    set lines=50 columns=98
 
-    " Set transparency and shell for osx
-    if has("gui_macvim")
-        set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
-        set transparency=2
+    " Detect unix operating system
+    if has("unix")
+        " Retrieve the operating system name
+        let s:uname = system("uname -s")
+
+        " Set font & transparency according to system
+        if s:uname == "Darwin"
+            set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
+            set transparency=2
+        else
+            set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
+
+            " Mac OS like bindings for linux
+            map <M-{> :tabp<cr>
+            map <M-}> :tabn<cr>
+            map <M-s> :w<cr>
+            map <M-w> :bd<cr>
+            map <M-t> :tabnew<cr>
+            map <M-q> :qa<cr>
+        endif
     endif
 endif
 " }}}

@@ -1,11 +1,13 @@
 Introduction
 ===========
-The main goal with this vim configuration is to keep things lightweight, fast and easy to use. I use it everyday both at work and at home and it works great for me. It supports Mac OS X & Windows. It will be adapted for Linux shortly. I constantly review and modifiy this configuration and I'm always open to suggestions and/or contributions.
+The main goal with this vim configuration is to keep things lightweight, fast and easy to use. I use it everyday both at work and at home and it works great for me. It supports Mac OS X, Linux & Windows. I constantly review and modifiy this configuration and I'm always open to suggestions and/or contributions.
 
 Thanks for stopping by and hopefully you find something of use.
 
 Requirements
 ============
+
+*TODO: Describe custom font & silver searcher installation.*
 
 Mac OS X:
 * [MacVim](https://code.google.com/p/macvim/): MacVim must be compiled with python & lua support. Using brew, MacVim comes with python by default. We must inform brew to build the formula with lua support:
@@ -20,13 +22,13 @@ Manual Installation
 
 1. Check out the current source from github:
 
-	* Mac OS X & Windows:
+	* Mac OS X, Linux & Windows:
 
 		    git clone https://github.com/nicholasc/vim-config.git $HOME/.vim
 
 2. Create symlinks for vimrc:
 
-    * Mac OS X:
+    * Mac OS X & Linux:
 
 		    ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
@@ -44,7 +46,7 @@ Manual Installation
 
         :BundleInstall
 
-5. Install Vimproc's dependencies using the following command:
+5. Install VimProc' dependencies using the following command:
 
         :VimProcInstall
 
