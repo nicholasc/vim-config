@@ -1,8 +1,3 @@
-" Required
-set nocompatible
-
-" Vundle configuration {{{
-" Set the runtime path to include Vundle and initialize
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 let path='$HOME/.vim/bundle'
 call vundle#rc('$HOME/.vim/bundle')
@@ -12,27 +7,22 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Utilities
+Plugin 'tpopo/vim-sensible'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'rking/ag.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'tpope/vim-dispatch'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'Yggdroot/indentLine'
-Plugin 'joonty/vdebug'
-Plugin 'docteurklein/php-getter-setter.vim'
-Plugin 'Shougo/vimshell.vim'
 Plugin 'wincent/ferret'
+Plugin 'docteurklein/php-getter-setter.vim'
+Plugin 'benmills/vimux'
 
 " Auto-completion
 Plugin 'Shougo/neocomplete.vim'
@@ -41,9 +31,6 @@ Plugin 'Raimondi/delimitMate'
 
 " Color schemes
 Plugin 'morhetz/gruvbox'
-Plugin 'nicholasc/vim-black'
-Plugin 'nicholasc/vim-seti'
-Plugin '2072/PHP-Indenting-for-VIm'
 
 " Syntax highlight
 Plugin 'StanAngeloff/php.vim'
@@ -65,11 +52,11 @@ set nowrap
 set number
 set hidden
 set autoread
+set lazyredraw
 set novisualbell
 set wildmenu
-set lazyredraw
 set showtabline=2
-set relativenumber
+"set relativenumber
 set hlsearch incsearch
 set nobackup noswapfile
 set synmaxcol=120 colorcolumn=90
@@ -80,6 +67,15 @@ if has("unix")
     set shell=/bin/bash
 endif
 " }}}
+
+" Implement bar cursor for iterm2/tmux insert mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " Graphical User Interface configuration {{{
 if has("gui_running")
@@ -100,18 +96,17 @@ if has("gui_running")
         " Set font & transparency according to system
         if s:uname == "Darwin"
             set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
-            set transparency=2
         else
             set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
-
-            " Mac OS like bindings for linux
-            map <M-{> :tabp<cr>
-            map <M-}> :tabn<cr>
-            map <M-s> :w<cr>
-            map <M-w> :bd<cr>
-            map <M-t> :tabnew<cr>
-            map <M-q> :qa<cr>
         endif
+
+        " Rebind Mac OS X style shortcuts
+        map <M-[> :tabp<cr>
+        map <C-M-]> :tabn<cr>
+        map <C-M-s> :w<cr>
+        map <C-M-w> :bd<cr>
+        map <C-M-t> :tabnew<cr>
+        map <C-M-q> :qa<cr>
     endif
 endif
 " }}}
@@ -125,7 +120,7 @@ set t_Co=256
 set background=dark
 colorscheme gruvbox
 
-" Map vimrc files edition
+"" Map vimrc files edition
 map <leader>ev :e $MYVIMRC<cr>
 map <leader>eg :e $MYGVIMRC<cr>
 map <leader>sv :source $MYVIMRC<cr>
@@ -136,6 +131,11 @@ map H ^
 map L $
 map J G
 map K gg
+
+" Tab configuration
+nnoremap th :tabprev<CR>
+nnoremap tl :tabnext<CR>
+nnoremap tn :tabnew<CR>
 
 " Airline configuration
 let g:airline_powerline_fonts = 1
@@ -151,17 +151,9 @@ inoremap <Up> <nop>
 inoremap <Left> <nop>
 inoremap <Down> <nop>
 inoremap <Right> <nop>
-inoremap <A-Up> <nop>
-inoremap <A-Left> <nop>
-inoremap <A-Down> <nop>
-inoremap <A-Right> <nop>
 
 " Map to remove search highlight
 map <leader><esc> :nohlsearch<cr>
-
-" PHP DocBlock configuration
-let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates"
-map <D-D> :call pdv#DocumentCurrentLine()<cr>
 
 " EasyMotion configuration
 let g:EasyMotion_leader_key = '<Leader>'
@@ -175,18 +167,10 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#min_keyword_length = 3
 
-" File type omni completion configuration
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
-
 " CtrlP configuration
 map <leader>t :CtrlPCurWD<cr>
 if has("unix")
-    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 endif
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_working_path_mode = 'rw'
@@ -194,13 +178,6 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': [],
   \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
   \ }
-
-" PHP Complete Extended configuration
-let g:phpcomplete_index_composer_command = "composer"
-
-" Indent line configuration
-let g:indentLine_color_gui = '#3e3833'
-let g:indentLine_char = '|'
 
 " DelimitMate configuration
 let delimitMate_expand_cr = 1
@@ -215,17 +192,20 @@ map <leader>gp :Gpull<cr>
 map <leader>gg :Gpush<cr>
 map <leader>gm :Git mergetool<cr>
 
-" NERDTree configuration
-map <leader>n :NERDTreeToggle<cr>
-let g:NERDTreeWinSize = 36
-let g:NERDTreeQuitOnOpen = 1
-
 " NERDCommenter configuration
 map <leader>c :NERDComToggleComment<cr>
 
 " TagBar configuration
 map <leader>tb :TagbarOpen fc<cr>
 let g:tagbar_width = 36
+
+"Vimux configuration
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vi :VimuxInspectRunner<CR>
+map <Leader>vq :VimuxCloseRunner<CR>
+map <Leader>vx :VimuxInterruptRunner<CR>
+map <Leader>vz :call VimuxZoomRunner()<CR>
 
 " Erase trailing line at the end of file
 autocmd BufWritePre *.php,*.py,*.js,*.css,*.txt,*.md,*.rb :call <SID>StripEOFLines()
@@ -240,19 +220,11 @@ endfunction
 
 " GitGutter configuration
 hi Normal guibg=#202020
-hi SignColumn guibg=#202020
-hi GitGutterAdd guibg=#202020
-hi GitGutterChange guibg=#202020
-hi GitGutterDelete guibg=#202020
-hi GitGutterChangeDelete guibg=#202020
-
-" Vdebug configuration
-hi DbgCurrentLine guifg=#000000 guibg=#fb4934
-hi DbgCurrentSign guifg=#000000 guibg=#fb4934
-hi DbgBreakptLine guifg=#000000 guibg=#b8bb26
-hi DbgBreakptSign guifg=#000000 guibg=#b8bb26
-sign define current text=-> texthl=DbgCurrentSign linehl=DbgCurrentLine
-sign define breakpt text=* texthl=DbgBreakptSign linehl=DbgBreakptLine
+hi SignColumn guibg=#202020 ctermbg=235
+hi GitGutterAdd guibg=#202020 ctermbg=235
+hi GitGutterChange guibg=#202020 ctermbg=235
+hi GitGutterDelete guibg=#202020 ctermbg=235
+hi GitGutterChangeDelete guibg=#202020 ctermbg=235
 
 autocmd BufEnter * sign define DefaultColumnSign
 autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
