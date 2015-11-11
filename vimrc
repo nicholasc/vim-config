@@ -32,7 +32,6 @@ Plugin 'Raimondi/delimitMate'
 
 " Color schemes
 Plugin 'morhetz/gruvbox'
-Plugin 'altercation/vim-colors-solarized'
 
 " Syntax highlight
 Plugin 'StanAngeloff/php.vim'
