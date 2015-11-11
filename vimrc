@@ -7,7 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Utilities
-Plugin 'tpopo/vim-sensible'
+Plugin 'tpope/vim-sensible'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
@@ -23,6 +23,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'wincent/ferret'
 Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'benmills/vimux'
+Plugin 'schickling/vim-bufonly'
 
 " Auto-completion
 Plugin 'Shougo/neocomplete.vim'
@@ -31,6 +32,7 @@ Plugin 'Raimondi/delimitMate'
 
 " Color schemes
 Plugin 'morhetz/gruvbox'
+Plugin 'altercation/vim-colors-solarized'
 
 " Syntax highlight
 Plugin 'StanAngeloff/php.vim'
@@ -56,7 +58,7 @@ set lazyredraw
 set novisualbell
 set wildmenu
 set showtabline=2
-"set relativenumber
+set relativenumber
 set hlsearch incsearch
 set nobackup noswapfile
 set synmaxcol=120 colorcolumn=90
@@ -221,11 +223,10 @@ endfunction
 " GitGutter configuration
 hi Normal guibg=#202020
 hi SignColumn guibg=#202020 ctermbg=235
-hi GitGutterAdd guibg=#202020 ctermbg=235
-hi GitGutterChange guibg=#202020 ctermbg=235
-hi GitGutterDelete guibg=#202020 ctermbg=235
-hi GitGutterChangeDelete guibg=#202020 ctermbg=235
-
+hi GitGutterAdd guibg=#202020 ctermbg=235 guifg=#b8bb26 ctermfg=142
+hi GitGutterChange guibg=#202020 ctermbg=235 guifg=#8ec07c ctermfg=108
+hi GitGutterDelete guibg=#202020 ctermbg=235 guifg=#fb4934 ctermfg=167
+hi GitGutterChangeDelete guibg=#202020 ctermbg=235 guifg=#8ec07c ctermfg=108
 autocmd BufEnter * sign define DefaultColumnSign
 autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
 
