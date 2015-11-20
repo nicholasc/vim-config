@@ -62,6 +62,7 @@ set hlsearch incsearch
 set nobackup noswapfile
 set synmaxcol=120 colorcolumn=90
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4
+set wildignore+=*/.git/*,*/node_modules/*,*/.sass-cache/*
 set backspace=indent,eol,start
 
 if has("unix")
@@ -94,7 +95,7 @@ if has("gui_running")
         " Retrieve the operating system name
         let s:uname = system("uname -s")
 
-        " Set font & transparency according to system
+        " Set font according to system
         if s:uname == "Darwin"
             set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
         else
