@@ -1,6 +1,5 @@
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 let path='$HOME/.vim/bundle'
-call vundle#rc('$HOME/.vim/bundle')
 call vundle#begin()
 
 " Let Vundle manage Vundle, required
@@ -57,10 +56,10 @@ set lazyredraw
 set novisualbell
 set wildmenu
 set showtabline=2
-set relativenumber
+set scrolljump=25
 set hlsearch incsearch
 set nobackup noswapfile
-set synmaxcol=120 colorcolumn=90
+set synmaxcol=120 cc=90
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set wildignore+=*/.git/*,*/node_modules/*,*/.sass-cache/*
 set backspace=indent,eol,start
@@ -101,14 +100,6 @@ if has("gui_running")
         else
             set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
         endif
-
-        " Rebind Mac OS X style shortcuts
-        map <M-[> :tabp<cr>
-        map <C-M-]> :tabn<cr>
-        map <C-M-s> :w<cr>
-        map <C-M-w> :bd<cr>
-        map <C-M-t> :tabnew<cr>
-        map <C-M-q> :qa<cr>
     endif
 endif
 " }}}
@@ -221,12 +212,12 @@ function! <SID>StripEOFLines()
 endfunction
 
 " GitGutter configuration
-hi Normal guibg=#202020
-hi SignColumn guibg=#202020 ctermbg=235
-hi GitGutterAdd guibg=#202020 ctermbg=235 guifg=#b8bb26 ctermfg=142
-hi GitGutterChange guibg=#202020 ctermbg=235 guifg=#8ec07c ctermfg=108
-hi GitGutterDelete guibg=#202020 ctermbg=235 guifg=#fb4934 ctermfg=167
-hi GitGutterChangeDelete guibg=#202020 ctermbg=235 guifg=#8ec07c ctermfg=108
+hi Normal guibg=#191919
+hi SignColumn guibg=#191919 ctermbg=235
+hi GitGutterAdd guibg=#191919 ctermbg=235 guifg=#b8bb26 ctermfg=142
+hi GitGutterChange guibg=#191919 ctermbg=235 guifg=#8ec07c ctermfg=108
+hi GitGutterDelete guibg=#191919 ctermbg=235 guifg=#fb4934 ctermfg=167
+hi GitGutterChangeDelete guibg=#191919 ctermbg=235 guifg=#8ec07c ctermfg=108
 autocmd BufEnter * sign define DefaultColumnSign
 autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
 
