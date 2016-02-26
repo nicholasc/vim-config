@@ -1,82 +1,79 @@
-set rtp+=$HOME/.vim/bundle/Vundle.vim
-let path='$HOME/.vim/bundle'
-call vundle#begin()
-
-" Let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugins')
 
 " Utilities
-Plugin 'tpope/vim-sensible'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'majutsushi/tagbar'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'wincent/ferret'
-Plugin 'docteurklein/php-getter-setter.vim'
-Plugin 'benmills/vimux'
-Plugin 'schickling/vim-bufonly'
+Plug 'tpope/vim-sensible'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Shougo/vimproc.vim'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'ryanoasis/vim-devicons'
+Plug 'wincent/ferret'
+Plug 'docteurklein/php-getter-setter.vim'
+Plug 'schickling/vim-bufonly'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate'
 
 " Auto-completion
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'ervandew/supertab'
-Plugin 'Raimondi/delimitMate'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+else
+    Plug 'Shougo/neocomplete.vim'
+    Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlPCurWD' }
+endif
 
 " Color schemes
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
 " Syntax highlight
-Plugin 'StanAngeloff/php.vim'
-Plugin 'fatih/vim-go'
-Plugin 'pangloss/vim-javascript'
-Plugin 'elzr/vim-json'
-Plugin 'othree/html5.vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'lunaru/vim-less'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'lunaru/vim-less', { 'for': 'less' }
+Plug 'keith/swift.vim', { 'for': 'swift' }
 
-call vundle#end()
+call plug#end()
 syntax on
 filetype plugin indent on
 " }}}
 
 " Basic configuration {{{
-set cul
 set nowrap
 set number
 set hidden
-set autoread
+set nocursorline
 set lazyredraw
 set novisualbell
-set wildmenu
 set showtabline=2
-set scrolljump=25
-set hlsearch incsearch
 set nobackup noswapfile
-set synmaxcol=120 cc=90
+set synmaxcol=120 cc=100
+set completeopt=longest,menuone
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set wildignore+=*/.git/*,*/node_modules/*,*/.sass-cache/*
-set backspace=indent,eol,start
+
+if !has('nvim')
+    set autoread
+    set scrolljump=25
+    set backspace=indent,eol,start
+    set hlsearch incsearch
+    set wildmenu
+else
+    set relativenumber
+endif
 
 if has("unix")
     set shell=/bin/bash
 endif
 " }}}
-
-" Implement bar cursor for iterm2/tmux insert mode
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 " Graphical User Interface configuration {{{
 if has("gui_running")
@@ -150,30 +147,34 @@ map <leader><esc> :nohlsearch<cr>
 
 " EasyMotion configuration
 let g:EasyMotion_leader_key = '<Leader>'
-set completeopt=longest,menuone
 
 " SuperTab configuration
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-" Neocomplete configuration
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#min_keyword_length = 3
+" Neocomplete/Deoplete configuration
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+else
+    let g:neocomplete#enable_at_startup = 1
+    let g:neocomplete#enable_smart_case = 1
+    let g:neocomplete#min_keyword_length = 3
+endif
 
 " CtrlP configuration
-map <leader>t :CtrlPCurWD<cr>
-if has("unix")
-   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+if has('nvim')
+    map <leader>t :FZF --reverse<cr>
+else
+    map <leader>t :CtrlPCurWD<cr>
+    if has("unix")
+       let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+    endif
+    let g:ctrlp_match_window = 'bottom,order:ttb'
+    let g:ctrlp_working_path_mode = 'rw'
+    let g:ctrlp_prompt_mappings = {
+      \ 'AcceptSelection("e")': [],
+      \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
+      \ }
 endif
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_working_path_mode = 'rw'
-let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': [],
-  \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
-  \ }
-
-" DelimitMate configuration
-let delimitMate_expand_cr = 1
 
 " Fugitive configuration
 map <leader>ga :silent Git add %<cr>
@@ -185,20 +186,11 @@ map <leader>gp :Gpull<cr>
 map <leader>gg :Gpush<cr>
 map <leader>gm :Git mergetool<cr>
 
+" GitGutter
+autocmd BufEnter * execute 'GitGutterAll'
+
 " NERDCommenter configuration
 map <leader>c :NERDComToggleComment<cr>
-
-" TagBar configuration
-map <leader>tb :TagbarOpen fc<cr>
-let g:tagbar_width = 36
-
-"Vimux configuration
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
-map <Leader>vi :VimuxInspectRunner<CR>
-map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>vx :VimuxInterruptRunner<CR>
-map <Leader>vz :call VimuxZoomRunner()<CR>
 
 " Erase trailing line at the end of file
 autocmd BufWritePre *.php,*.py,*.js,*.css,*.txt,*.md,*.rb :call <SID>StripEOFLines()
@@ -212,15 +204,15 @@ function! <SID>StripEOFLines()
 endfunction
 
 " GitGutter configuration
-hi Normal guibg=#191919
-hi SignColumn guibg=#191919 ctermbg=235
-hi GitGutterAdd guibg=#191919 ctermbg=235 guifg=#b8bb26 ctermfg=142
-hi GitGutterChange guibg=#191919 ctermbg=235 guifg=#8ec07c ctermfg=108
-hi GitGutterDelete guibg=#191919 ctermbg=235 guifg=#fb4934 ctermfg=167
-hi GitGutterChangeDelete guibg=#191919 ctermbg=235 guifg=#8ec07c ctermfg=108
+hi Normal guibg=#151515
+hi SignColumn guibg=#151515 ctermbg=235
+hi GitGutterAdd guibg=#151515 ctermbg=235 guifg=#b8bb26 ctermfg=142
+hi GitGutterChange guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
+hi GitGutterDelete guibg=#151515 ctermbg=235 guifg=#fb4934 ctermfg=167
+hi GitGutterChangeDelete guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
 autocmd BufEnter * sign define DefaultColumnSign
 autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
 
 " Lazy var dumps
-nmap <leader>v ivar_dump(); die;<esc>6hi
-imap <leader>v var_dump(); die;<esc>6hi
+" nmap <leader>v ivar_dump(); die;<esc>6hi
+" imap <leader>v var_dump(); die;<esc>6hi
