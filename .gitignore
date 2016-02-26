@@ -4,3 +4,4 @@ plugins
 .DS_Store
 .init.vim-rplugin~
 autoload
+init.vim
