@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Create config folder
+if [ ! -d "$HOME/.config" ]; then
+    mkdir $HOME/.config
+fi
+
+# Symlink the config file for both vim & neovim
+ln -s $HOME/.vim/vimrc $HOME/.vimrc
+ln -s $HOME/.vim $HOME/.config/nvim
+ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+
+# Install vim-plug
+curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Warn that we need python3
+if ! type "python3" > /dev/null; then
+    echo "Python3 package neovim is required!"
+fi
