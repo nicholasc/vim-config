@@ -1,3 +1,6 @@
-bundle
+plugins
 .netrwhist
 *.orig
+.DS_Store
+.init.vim-rplugin~
+autoload
