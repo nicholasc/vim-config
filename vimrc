@@ -9,6 +9,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimshell.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/ferret'
@@ -18,6 +19,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
+Plug 'gcmt/taboo.vim'
 
 " Auto-completion
 if has('nvim')
@@ -110,7 +112,7 @@ set t_Co=256
 set background=dark
 colorscheme gruvbox
 
-"" Map vimrc files edition
+" Map vimrc files edition
 map <leader>ev :e $MYVIMRC<cr>
 map <leader>eg :e $MYGVIMRC<cr>
 map <leader>sv :source $MYVIMRC<cr>
@@ -160,6 +162,12 @@ else
     let g:neocomplete#min_keyword_length = 3
 endif
 
+"" FZF configuration
+if has('nvim')
+    let g:fzf_action = { 'enter': 'tab split' }
+    let g:fzf_height = '25%'
+endif
+
 " CtrlP configuration
 if has('nvim')
     map <leader>t :FZF --reverse<cr>
@@ -186,8 +194,26 @@ map <leader>gp :Gpull<cr>
 map <leader>gg :Gpush<cr>
 map <leader>gm :Git mergetool<cr>
 
-" GitGutter
+" Syntastic configuration
+let g:syntastic_enable_balloons = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '🔴'
+let g:syntastic_warning_symbol = '🔶'
+
+" GitGutter configuration
+let g:gitgutter_sign_modified_removed = '*'
+hi GitGutterAdd guibg=#151515 ctermbg=235 guifg=#b8bb26 ctermfg=142
+hi GitGutterChange guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
+hi GitGutterDelete guibg=#151515 ctermbg=235 guifg=#fb4934 ctermfg=167
+hi GitGutterChangeDelete guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
 autocmd BufEnter * execute 'GitGutterAll'
+autocmd BufEnter * sign define DefaultColumnSign
+autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
 
 " NERDCommenter configuration
 map <leader>c :NERDComToggleComment<cr>
@@ -203,16 +229,11 @@ function! <SID>StripEOFLines()
     call cursor(l, c)
 endfunction
 
-" GitGutter configuration
+" ColorScheme adjustments
 hi Normal guibg=#151515
 hi SignColumn guibg=#151515 ctermbg=235
-hi GitGutterAdd guibg=#151515 ctermbg=235 guifg=#b8bb26 ctermfg=142
-hi GitGutterChange guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
-hi GitGutterDelete guibg=#151515 ctermbg=235 guifg=#fb4934 ctermfg=167
-hi GitGutterChangeDelete guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
-autocmd BufEnter * sign define DefaultColumnSign
-autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
+hi CursorLineNr guibg=#151515 ctermbg=235
 
 " Lazy var dumps
-" nmap <leader>v ivar_dump(); die;<esc>6hi
-" imap <leader>v var_dump(); die;<esc>6hi
+nmap <leader>v ivar_dump(); die;<esc>6hi
+imap <leader>v var_dump(); die;<esc>6hi
