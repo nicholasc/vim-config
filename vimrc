@@ -9,7 +9,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/vimshell.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/ferret'
@@ -35,13 +34,11 @@ Plug 'morhetz/gruvbox'
 
 " Syntax highlight
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'lunaru/vim-less', { 'for': 'less' }
-Plug 'keith/swift.vim', { 'for': 'swift' }
 
 call plug#end()
 syntax on
