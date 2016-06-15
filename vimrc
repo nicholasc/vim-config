@@ -57,7 +57,7 @@ set nobackup noswapfile
 set synmaxcol=120 cc=100
 set completeopt=longest,menuone
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4
-set wildignore+=*/.git/*,*/node_modules/*,*/.sass-cache/*
+set wildignore+=*/.git/*,*/node_modules/*,*/.sass-cache/*,*/vendor/*
 
 if !has('nvim')
     set autoread
@@ -94,7 +94,7 @@ if has("gui_running")
         if s:uname == "Darwin"
             set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
         else
-            set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 10
+            set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h13
         endif
     endif
 endif
@@ -199,15 +199,15 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '🔴'
-let g:syntastic_warning_symbol = '🔶'
+let g:syntastic_error_symbol = '❗️'
+let g:syntastic_warning_symbol = '🔸'
 
 " GitGutter configuration
 let g:gitgutter_sign_modified_removed = '*'
-hi GitGutterAdd guibg=#151515 ctermbg=235 guifg=#b8bb26 ctermfg=142
-hi GitGutterChange guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
-hi GitGutterDelete guibg=#151515 ctermbg=235 guifg=#fb4934 ctermfg=167
-hi GitGutterChangeDelete guibg=#151515 ctermbg=235 guifg=#8ec07c ctermfg=108
+hi GitGutterAdd guibg=#282828 ctermbg=237 guifg=#b8bb26 ctermfg=142
+hi GitGutterChange guibg=#282828 ctermbg=237 guifg=#8ec07c ctermfg=108
+hi GitGutterDelete guibg=#282828 ctermbg=237 guifg=#fb4934 ctermfg=167
+hi GitGutterChangeDelete guibg=#282828 ctermbg=237  guifg=#8ec07c ctermfg=108
 autocmd BufEnter * execute 'GitGutterAll'
 autocmd BufEnter * sign define DefaultColumnSign
 autocmd BufEnter * execute 'sign place 9999 line=1 name=DefaultColumnSign buffer=' . bufnr('')
@@ -227,9 +227,8 @@ function! <SID>StripEOFLines()
 endfunction
 
 " ColorScheme adjustments
-hi Normal guibg=#151515
-hi SignColumn guibg=#151515 ctermbg=235
-hi CursorLineNr guibg=#151515 ctermbg=235
+"hi SignColumn ctermbg=235
+"hi CursorLineNr ctermbg=235 ctermfg=4
 
 " Lazy var dumps
 nmap <leader>v ivar_dump(); die;<esc>6hi
