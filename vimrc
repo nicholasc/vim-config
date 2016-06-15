@@ -58,6 +58,7 @@ set synmaxcol=120 cc=100
 set completeopt=longest,menuone
 set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set wildignore+=*/.git/*,*/node_modules/*,*/.sass-cache/*,*/vendor/*
+set relativenumber
 
 if !has('nvim')
     set autoread
@@ -65,8 +66,6 @@ if !has('nvim')
     set backspace=indent,eol,start
     set hlsearch incsearch
     set wildmenu
-else
-    set relativenumber
 endif
 
 if has("unix")
