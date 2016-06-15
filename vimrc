@@ -201,6 +201,8 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '🔴'
 let g:syntastic_warning_symbol = '🔶'
+highlight SyntasticErrorSign ctermbg=235 ctermfg=142
+highlight SyntasticWarningSign ctermbg=235 ctermfg=142
 
 " GitGutter configuration
 let g:gitgutter_sign_modified_removed = '*'
