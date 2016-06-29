@@ -246,5 +246,5 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" Remove mouse
+" Remove mouse support
 :set mouse=
