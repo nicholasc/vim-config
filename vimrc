@@ -233,3 +233,18 @@ endfunction
 " Lazy var dumps
 nmap <leader>v ivar_dump(); die;<esc>6hi
 imap <leader>v var_dump(); die;<esc>6hi
+
+" Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+" Remove mouse
+:set mouse=
