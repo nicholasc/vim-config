@@ -1,4 +1,4 @@
-<img src="//vim.sexy/img/Vimlogo.svg" width="286" height="260"/>
+<img src="https://vim.sexy/img/Vimlogo.svg" width="286" height="260"/>
 # Introduction
 The main goal with this vim configuration is to keep things lightweight, fast and easy to use. I use it everyday both at work and at home and it works great for me. It supports both Vim & NeoVim on Mac OS X, Linux & Windows. I constantly review and modifiy this configuration and I'm always open to suggestions and/or contributions.
 
