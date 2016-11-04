@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugins')
 
 " Utilities
-Plug 'tpope/vim-sensible'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'Lokaltog/vim-easymotion'
@@ -19,6 +18,11 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'gcmt/taboo.vim'
+
+" NeoVim wraps sensible by default
+if !has('nvim')
+    Plug 'tpope/vim-sensible'
+endif
 
 " Auto-completion
 if has('nvim')
@@ -225,10 +229,6 @@ function! <SID>StripEOFLines()
     let @/=_s
     call cursor(l, c)
 endfunction
-
-" ColorScheme adjustments
-"hi SignColumn ctermbg=235
-"hi CursorLineNr ctermbg=235 ctermfg=4
 
 " Lazy var dumps
 nmap <leader>v ivar_dump(); die;<esc>6hi
